@@ -1,0 +1,47 @@
+<div class="container">
+    <h1>Angular + ASP.NET Core CRUD </h1>
+
+    <div class="cartao-container">
+        <div class="cartao-form">
+            <form #form = "ngForm" (ngSubmit)="onSubmit()">
+                <div class="form-goup">
+                    <label for="">Nome Cartao</label>
+                    <input type="text" name="nomeCartao" [(ngModel)]="cartao.nomeCartao">
+                </div>
+                <div class="form-goup">
+                    <label for="">Numero Cartao</label>
+                    <input type="text" name="numeroCartao" [(ngModel)]="cartao.numCartao">
+                </div>
+                <div class="form-group form-group-inline">
+                    <div>
+                        <label for="">CVV</label>
+                        <input type="text" name="CVV" [(ngModel)]="cartao.cvv">
+                    </div>
+                    <div>
+                        <label for="">Mes Venc.</label>
+                        <input type="text" name="mesVencimento" [(ngModel)]="cartao.vencimentoMes">
+                    </div>
+                    <div>
+                        <label for="">Ano Venc.</label>
+                        <input type="text" name="anoVencimento" [(ngModel)]="cartao.vencimentoAno">
+                    </div>
+                </div>
+                <div class="form-goup">
+                    <button>Salvar</button>
+                </div>
+            </form>
+        </div>
+        <div class="cartao-grid">
+
+            <div (click)="populateForm(cartao)" class="cartao-linha" *ngFor="let cartao of cartoes">
+                <div class="cartao-linha-detalhes" (click)="populateForm(cartao)">
+                    <span>{{ cartao.nomeCartao }}</span>
+                    <span>{{ cartao.numCartao }}</span>
+                </div>
+                <div class="cartao-linha-acao">
+                    <a (click)="deleteCartao(cartao.id)"><i class="fa-solid fa-trash-can"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

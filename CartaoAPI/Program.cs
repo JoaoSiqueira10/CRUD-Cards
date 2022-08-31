@@ -12,6 +12,13 @@ builder.Services.AddSwaggerGen();
 
 // Inject DbContext
 builder.Services.AddDbContext<CartaoDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("CartaoDbConnctionString")));
+builder.Services.AddCors((setup) =>
+{
+    setup.AddPolicy("default", (options) =>
+    {
+        options.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin();
+    });
+});
 
 var app = builder.Build();
 
@@ -21,6 +28,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("default");
 
 app.UseHttpsRedirection();
 
